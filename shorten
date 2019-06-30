@@ -1,0 +1,43 @@
+#!/bin/bash
+# cf.: https://github.blog/2011-11-10-git-io-github-url-shortener/
+
+# $ curl -i https://git.io -F "url=https://github.com/..."
+# HTTP/1.1 201 Created
+# Location: https://git.io/abc123<Paste>
+
+# vanity url:
+# $ curl -i https://git.io -F "url=https://github.com/technoweenie" -F "code=t"
+# HTTP/1.1 201 Created
+# Location: https://git.io/t
+
+# Set the color
+magenta=$(tput setaf 5)
+
+# Resets the style
+reset=`tput sgr0`
+
+# Color-echo. Improved. [Thanks @joaocunha; cc: @nnja]
+# arg $1 = message
+# arg $2 = Color
+cecho() {
+  echo "${2}${1}${reset}"
+  return
+}
+
+cecho "Enter a GitHub url to shorten (or press q to quit):" $magenta
+read url
+
+if [[ "$url" == "q" ]] ; then
+  exit 1
+fi
+
+cecho "Press y to enter a vanity url or n to generate one automatically.)" $magenta
+read answer
+
+if [[ "$answer" == "n" ]] ; then
+  curl -i https://git.io -F "url=$url"
+else
+  cecho "Enter a vanity url:" $magenta
+  read vanityurl
+  curl -i https://git.io -F "url=$url" -F "code=$vanityurl"
+fi
