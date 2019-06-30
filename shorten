@@ -10,15 +10,15 @@
 # HTTP/1.1 201 Created
 # Location: https://git.io/t
 
- #Set the color
+# Set the color
 magenta=$(tput setaf 5)
 
- #Resets the style
+# Resets the style
 reset=`tput sgr0`
 
- #Color-echo. Improved. [Thanks @joaocunha; cc: @nnja]
- #arg $1 = message
- #arg $2 = Color
+# Color-echo. Improved. [Thanks @joaocunha; cc: @nnja]
+# arg $1 = message
+# arg $2 = Color
 cecho() {
   echo "${2}${1}${reset}"
   return
@@ -32,3 +32,4 @@ else
   cecho "Invalid input." $magenta
   exit 1
 fi
+
