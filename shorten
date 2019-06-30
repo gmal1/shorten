@@ -24,7 +24,7 @@ cecho() {
   return
 }
 
-if [[ $# == 2 ]] ; then
+if [[ $# == 2 && $2 =~ '[a-zA-Z]' ]] ; then
   curl -i https://git.io -F "url=${1}" -F "code=${2}"
 elif [[ $# == 1 ]] ; then
   curl -i https://git.io -F "url=${1}"
