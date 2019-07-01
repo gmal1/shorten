@@ -3,7 +3,7 @@
 
 # $ curl -i https://git.io -F "url=https://github.com/..."
 # HTTP/1.1 201 Created
-# Location: https://git.io/abc123<Paste>
+# Location: https://git.io/abc123
 
 # vanity url:
 # $ curl -i https://git.io -F "url=https://github.com/technoweenie" -F "code=t"
