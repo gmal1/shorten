@@ -18,13 +18,15 @@ reset=`tput sgr0`
 
 # Color-echo. Improved. [Thanks @joaocunha; cc: @nnja]
 # arg $1 = message
-# arg $2 = Color
+# arg $2 = color
 cecho() {
   echo "${2}${1}${reset}"
   return
 }
 
-if [[ $# == 2 && $2 =~ '[a-zA-Z]' ]] ; then
+regex="[a-zA-Z]"
+
+if [[ $# == 2 && $2 =~ $regex ]] ; then
   curl -i https://git.io -F "url=${1}" -F "code=${2}"
 elif [[ $# == 1 ]] ; then
   curl -i https://git.io -F "url=${1}"
